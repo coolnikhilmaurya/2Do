@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="list_context_options">
+        <item>edit</item>
+        <item>copy</item>
+        <item>share</item>
+        <item>delete</item>
+    </array>
+    <array name="list_priorities">
+        <item>High</item>
+        <item>Mediam</item>
+        <item>Low</item>
+    </array>
+</resources>

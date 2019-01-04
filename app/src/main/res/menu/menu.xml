@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menuSearch"
+        android:contentDescription="@string/search"
+        android:icon="@drawable/ic_search_white_24dp"
+        android:title="@string/search"
+        app:showAsAction="ifRoom"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        />
+    <item
+        android:id="@+id/btnClearAll"
+        android:contentDescription="@string/clear_all"
+        android:title="@string/clear_all"/>
+    <item
+        android:id="@+id/btnFeedBack"
+        android:title="@string/feedback" />
+    <item
+        android:id="@+id/btnAboutApp"
+        android:title="@string/developer" />
+</menu>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/tvBsHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/take_note"
+        android:layout_margin="12dp"
+        android:textAlignment="center"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
+        />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <EditText
+            android:id="@+id/neweditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_pen"
+            android:ems="20"
+            android:hint="@string/text"
+            android:layout_margin="10dp"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            tools:ignore="Autofill" />
+
+
+    </android.support.design.widget.TextInputLayout>
+
+    <TextView
+            android:text="@string/priority"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+             android:layout_marginStart="15dp"
+        />
+        <Spinner
+            android:id="@+id/spnPriority"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/list_priorities"
+            android:padding="10dp">
+        </Spinner>
+
+    <Button
+        android:id="@+id/btnInsert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/colorWhite"
+        android:text="@string/submit" />
+
+
+</LinearLayout>

@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">ToDo</string>
+    <string name="listitem">ListItem</string>
+    <string name="delete">Delete</string>
+    <string name="add">ADD</string>
+    <string name="name">Name</string>
+    <string name="clear_all">Clear all</string>
+    <string name="clear">Clear</string>
+    <string name="text">Text</string>
+    <string name="feedback">Feedback</string>
+    <string name="feedbackTooltip">Provide feedback about 2Do</string>
+    <string name="developer">About Developer</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="search">Search</string>
+    <string name="take_note">Take Note</string>
+    <string name="submit">Submit</string>
+    <string name="nikhil_maurya">Nikhil Maurya</string>
+    <string name="android_developer">Android Developer</string>
+    <string name="mail">e-mail</string>
+    <string name="ran">ran</string>
+    <string name="share_app">Share App</string>
+    <string name="priority">Priority</string>
+    <string name="update">Update</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+</resources>

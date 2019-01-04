@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574b</color>
+    <color name="colorAccent">#e23e38</color>
+    <color name="colorWhite">#ffff</color>
+
+    // colors for listitem background   red , green , blue
+
+    <color name="colorLightRed">#b3fcfc78</color>
+    <color name="colorLightGreen">#af8bf143</color>
+    <color name="colorLightBlue">#aa716af2</color>
+
+
+
+
+
+
+</resources>

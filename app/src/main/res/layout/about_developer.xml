@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/aboutApp"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:background="@color/colorWhite"
+    android:layout_height="150dp">
+
+        <ImageView
+            android:id="@+id/profile"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:contentDescription="@string/ran"
+            android:elevation="25dp"
+            android:padding="20dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/myphoto" />
+
+        <LinearLayout
+            android:id="@+id/aboutLinearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:layout_marginStart="8dp"
+            android:orientation="vertical"
+            android:layout_marginTop="25dp"
+            app:layout_constraintBottom_toBottomOf="@+id/profile"
+            app:layout_constraintStart_toEndOf="@+id/profile"
+            app:layout_constraintTop_toTopOf="@+id/profile">
+
+            <TextView
+                android:id="@+id/tvDeveloperName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@string/nikhil_maurya"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/tvDesignation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/android_developer"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btnMail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorWhite"
+                    android:contentDescription="@string/mail"
+                    android:paddingStart="0dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="10dp"
+                    app:srcCompat="@drawable/ic_email_black_24dp" />
+
+
+                <ImageButton
+                    android:id="@+id/btnFb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorWhite"
+                    android:contentDescription="@string/mail"
+                    android:padding="10dp"
+                    app:srcCompat="@drawable/facebook" />
+
+                <ImageButton
+                    android:id="@+id/btnLinkedIn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorWhite"
+                    android:contentDescription="@string/mail"
+                    android:padding="10dp"
+                    app:srcCompat="@drawable/linkedin" />
+
+                <ImageButton
+                    android:id="@+id/btnGit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorWhite"
+                    android:contentDescription="@string/mail"
+                    android:padding="10dp"
+                    app:srcCompat="@drawable/github" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+</LinearLayout>
