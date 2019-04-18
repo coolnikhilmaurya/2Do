@@ -2,6 +2,7 @@ package test.example.nikhil.ToDo.Activities
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.BottomSheetDialog
@@ -23,6 +24,7 @@ import test.example.nikhil.ToDo.Database.MyDBHelper
 import test.example.nikhil.ToDo.Util.MyUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.Exception
+import java.util.*
 
 
 class MainActivity : AppCompatActivity(),android.support.v7.widget.SearchView.OnQueryTextListener {
@@ -38,10 +40,22 @@ class MainActivity : AppCompatActivity(),android.support.v7.widget.SearchView.On
         setContentView(R.layout.activity_main)
 
         try {
+            // creating locale
+            val loc = "hi"
+            val locale2 = Locale(loc)
+            Locale.setDefault(locale2)
+            val config2 = Configuration()
+            config2.locale = locale2
+
+// updating locale
+            this.getResources().updateConfiguration(config2, null)
+
+
             // handle shared text through any other app
             if(intent!=null){
                 handleSharedIntent(intent)
             }
+
 
             fabInsert.setOnClickListener {
                 myInsertFabOnClickListener()
@@ -86,9 +100,9 @@ class MainActivity : AppCompatActivity(),android.support.v7.widget.SearchView.On
             val sharedText = sharedIntent.getStringExtra(Intent.EXTRA_TEXT)
             val result = db.insert(sharedText, 0, 0)  // high priority
             if (result == 1) {
-                Snackbar.make(mainLayout, "Insertion Successfull", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(mainLayout, getString(R.string.insert_success), Snackbar.LENGTH_SHORT).show()
             } else {
-                Snackbar.make(mainLayout, "Internal error", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(mainLayout, getString(R.string.internal_error), Snackbar.LENGTH_SHORT).show()
             }
         }
     }
@@ -109,15 +123,16 @@ class MainActivity : AppCompatActivity(),android.support.v7.widget.SearchView.On
             if(noteText.isNotEmpty()){
                 val result = db.insert(noteText, 0,priorty)
                 if (result != -1) {
-                    Snackbar.make(mainLayout, "Insertion Successfull", Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(mainLayout, getString(R.string.insert_success), Snackbar.LENGTH_SHORT).show()
                 } else {
-                    Snackbar.make(mainLayout, "Internal error", Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(mainLayout, getString(R.string.internal_error), Snackbar.LENGTH_SHORT).show()
                 }
                 bSheet.cancel()
                 loadData()
             }
-            else
-                Snackbar.make(mainLayout, "Text Required", Snackbar.LENGTH_SHORT).show()
+            else {
+                Snackbar.make(mainLayout, getString(R.string.text_required), Snackbar.LENGTH_SHORT).show()
+            }
         }
         bSheet.setCancelable(true)
         bSheet.show()
@@ -183,7 +198,7 @@ class MainActivity : AppCompatActivity(),android.support.v7.widget.SearchView.On
             }
             else{
                 // No Activity found that can handle this intent.
-                Toast.makeText(this, "No e-mail client app found", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.no_email_client_app_found), Toast.LENGTH_SHORT).show()
 
             }
         }
@@ -195,7 +210,7 @@ class MainActivity : AppCompatActivity(),android.support.v7.widget.SearchView.On
                 startActivity(myIntent)
             }
             else{
-                Snackbar.make(it, "No e-mail client app found", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(it, getString(R.string.no_browser_found), Snackbar.LENGTH_SHORT).show()
             }
         }
 
@@ -206,7 +221,7 @@ class MainActivity : AppCompatActivity(),android.support.v7.widget.SearchView.On
                 startActivity(myIntent)
             }
             else{
-                Snackbar.make(it, "No e-mail client app found", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(it, getString(R.string.no_browser_found), Snackbar.LENGTH_SHORT).show()
 
             }
         }
@@ -218,7 +233,7 @@ class MainActivity : AppCompatActivity(),android.support.v7.widget.SearchView.On
                 startActivity(myIntent)
             }
             else{
-                Snackbar.make(View(parent), "No e-mail client app found", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(View(parent), getString(R.string.no_browser_found), Snackbar.LENGTH_SHORT).show()
             }
         }
 
@@ -229,8 +244,8 @@ class MainActivity : AppCompatActivity(),android.support.v7.widget.SearchView.On
 
         // showing an AlertDialog for confirming to lead to email app
         val alertDialog:AlertDialog.Builder=AlertDialog.Builder(this)
-        alertDialog.setTitle("Lead to email App for feedback")
-        alertDialog.setPositiveButton("OK") { _, _ ->
+        alertDialog.setTitle(getString(R.string.lead_to_email_for_feedback))
+        alertDialog.setPositiveButton(getString(R.string.yes)) { _, _ ->
             val intent = Intent(Intent.ACTION_SENDTO)
             intent.data = Uri.parse("mailto:${MyUtil.DEVELOPER_EMAIL}")
             if (intent.resolveActivity(packageManager) != null) {
@@ -238,11 +253,11 @@ class MainActivity : AppCompatActivity(),android.support.v7.widget.SearchView.On
             }
             else{
                 // No Activity found that can handle this intent.
-                Snackbar.make(mainLayout, "No e-mail client app found", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(mainLayout, getString(R.string.no_email_client_app_found), Snackbar.LENGTH_SHORT).show()
 
             }
         }
-        alertDialog.setNegativeButton("Cancel",null)
+        alertDialog.setNegativeButton(getString(R.string.no),null)
         alertDialog.setCancelable(true)
         val alert2Dialog = alertDialog.create()
         alert2Dialog.show()
@@ -252,14 +267,14 @@ class MainActivity : AppCompatActivity(),android.support.v7.widget.SearchView.On
     // Clearing all the db onClick of clear all options
     private fun clearAllOptionClick() {
         val adelAll:AlertDialog.Builder=AlertDialog.Builder(this)
-        adelAll.setTitle("Are you sure to delete all notes")
+        adelAll.setTitle(getString(R.string.sure_to_del_all_notes))
         adelAll.setCancelable(true)
-        adelAll.setPositiveButton("YES") { _, _ ->
+        adelAll.setPositiveButton(getString(R.string.yes)) { _, _ ->
             db.deleteAllItems()
-            Snackbar.make(mainLayout, "Cleared all items", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(mainLayout, getString(R.string.cleared_all_items), Snackbar.LENGTH_SHORT).show()
             loadData()
         }
-        adelAll.setNegativeButton("No",null)
+        adelAll.setNegativeButton(getString(R.string.no),null)
         adelAll.setCancelable(true)
         val alertDialog = adelAll.create()
         alertDialog.show()
@@ -270,7 +285,7 @@ class MainActivity : AppCompatActivity(),android.support.v7.widget.SearchView.On
     private fun loadData() {
         list = db.getAllItems()
         if (list.count() == 0) {
-            Snackbar.make(mainLayout, "No Items available. Do Insert", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(mainLayout, getString(R.string.no_items_avl_do_insrt), Snackbar.LENGTH_SHORT).show()
         }
         myRecyclerAdapter= RecyclerAdapter(list)
         myRecyclerView.adapter = myRecyclerAdapter

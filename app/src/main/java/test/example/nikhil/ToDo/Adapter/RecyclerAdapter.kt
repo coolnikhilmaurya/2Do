@@ -3,11 +3,9 @@ package test.example.nikhil.ToDo.Adapter
 import android.app.AlertDialog
 import android.app.Service
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.support.design.widget.BottomSheetDialog
-import android.support.design.widget.NavigationView
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -31,8 +29,8 @@ class RecyclerAdapter(private var list: ArrayList<Item>) :RecyclerView.Adapter<R
         rview=recyclerView
     }
 
-    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): MyViewHolder {
-        val v = LayoutInflater.from(p0.context).inflate(R.layout.item, p0, false)
+    override fun onCreateViewHolder(viewGroup: ViewGroup, p1: Int): MyViewHolder {
+        val v = LayoutInflater.from(viewGroup.context).inflate(R.layout.item, viewGroup, false)
         return MyViewHolder(v)
     }
 
@@ -57,11 +55,13 @@ class RecyclerAdapter(private var list: ArrayList<Item>) :RecyclerView.Adapter<R
             if (vholder.chkListItem.isChecked) {
                 db.updateCheck(list[pos].id, 1)
                 list[pos].check = 1
-                Snackbar.make(rview, "Checked ${list[pos].title}", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(rview, String.format(ctx.getString(R.string.note_checked),list[pos].title), Snackbar.LENGTH_SHORT).show()
             } else {
                 db.updateCheck(list[pos].id, 0)
                 list[pos].check = 0
-                Snackbar.make(rview, "Off Checked ${list[pos].title}", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(rview, String.format(ctx.getString(R.string.note_off_checked),list[pos].title), Snackbar.LENGTH_SHORT).show()
+
+              //  Snackbar.make(rview, "Off Checked ${list[pos].title}", Snackbar.LENGTH_SHORT).show()
             }
             notifyItemChanged(pos)
         }
@@ -74,7 +74,7 @@ class RecyclerAdapter(private var list: ArrayList<Item>) :RecyclerView.Adapter<R
         //  Displaying dialog menu with predefined option onItem click of any Item
         vholder.itemView.setOnClickListener{
             val optionAlert = AlertDialog.Builder(ctx)
-            optionAlert.setTitle("Select Option")
+            optionAlert.setTitle(it.context.getString(R.string.select_option))
             optionAlert.setItems(R.array.list_context_options) { _, which ->
                 // The 'which' argument contains the index position of the selected Item
                 when (which) {
@@ -144,15 +144,15 @@ class RecyclerAdapter(private var list: ArrayList<Item>) :RecyclerView.Adapter<R
                 if (result ==1) {
                     list[position].title=noteText
                     list[position].priority=priorty
-                    Snackbar.make(rview, "Update Successfull", Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(rview, it.context.getText(R.string.insert_success), Snackbar.LENGTH_SHORT).show()
                 } else {
-                    Snackbar.make(rview, "Internal error", Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(rview, it.context.getText(R.string.internal_error), Snackbar.LENGTH_SHORT).show()
                 }
                 bsheet.cancel()
                 notifyItemChanged(position)
             }
             else
-                Snackbar.make(rview, "Text Required", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(rview, it.context.getText(R.string.text_required), Snackbar.LENGTH_SHORT).show()
         }
         bsheet.setCancelable(false)
         bsheet.show()
@@ -165,10 +165,10 @@ class RecyclerAdapter(private var list: ArrayList<Item>) :RecyclerView.Adapter<R
         shareIntent.type = "text/plain"
         shareIntent.putExtra(Intent.EXTRA_TEXT, list[position].title)
         if (shareIntent.resolveActivity(ctx.packageManager)!=null) {
-            ctx.startActivity(Intent.createChooser(shareIntent, "Share with..."))
+            ctx.startActivity(Intent.createChooser(shareIntent, ctx.getString(R.string.share_with)))
         }
         else
-            Snackbar.make(rview, "No activity present to share", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(rview, ctx.getText(R.string.no_browser_found), Snackbar.LENGTH_SHORT).show()
     }
 
 
@@ -177,7 +177,7 @@ class RecyclerAdapter(private var list: ArrayList<Item>) :RecyclerView.Adapter<R
         val noteIdtoDel = list[position].id
         db.deleteItem(noteIdtoDel)
         list.removeAt(position)
-        Snackbar.make(rview, "Deleted Item", Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(rview, ctx.getString(R.string.deleted_item), Snackbar.LENGTH_SHORT).show()
         notifyItemRemoved(position)
         notifyItemRangeChanged(position, list.count())
     }
@@ -187,6 +187,6 @@ class RecyclerAdapter(private var list: ArrayList<Item>) :RecyclerView.Adapter<R
     private fun copyOptionClickOnListItem(position: Int) {
         val text= list[position].title
         MyUtil.copyTextOnClipboard(ctx,text)
-        Snackbar.make(rview,"Copied to Clipboard",Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(rview,ctx.getString(R.string.note_copied),Snackbar.LENGTH_SHORT).show()
     }
 }
