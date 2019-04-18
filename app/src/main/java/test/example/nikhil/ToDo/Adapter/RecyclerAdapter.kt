@@ -1,21 +1,23 @@
-package com.example.nikhil.ToDo.Adapter
+package test.example.nikhil.ToDo.Adapter
 
 import android.app.AlertDialog
 import android.app.Service
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.support.design.widget.BottomSheetDialog
+import android.support.design.widget.NavigationView
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import com.example.nikhil.ToDo.Pojo.Item
+import test.example.nikhil.ToDo.Pojo.Item
 import com.example.nikhil.ToDo.R
-import com.example.nikhil.ToDo.Database.MyDBHelper
-import com.example.nikhil.ToDo.Util.MyUtil
+import test.example.nikhil.ToDo.Database.MyDBHelper
+import test.example.nikhil.ToDo.Util.MyUtil
 
 class RecyclerAdapter(private var list: ArrayList<Item>) :RecyclerView.Adapter<RecyclerAdapter.MyViewHolder>() {
     private lateinit var db: MyDBHelper
@@ -90,6 +92,7 @@ class RecyclerAdapter(private var list: ArrayList<Item>) :RecyclerView.Adapter<R
                     }
                 }
             }
+
             val alertDialog = optionAlert.create()
             alertDialog.show()
         }

@@ -1,4 +1,4 @@
-package com.example.nikhil.ToDo.Pojo
+package test.example.nikhil.ToDo.Pojo
 
 data class Item(var id:Int=0,
                 var title: String = "",

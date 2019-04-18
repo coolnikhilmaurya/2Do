@@ -1,4 +1,4 @@
-package com.example.nikhil.ToDo.Activities
+package test.example.nikhil.ToDo.Activities
 
 import android.app.AlertDialog
 import android.content.Intent
@@ -12,18 +12,22 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
-import com.example.nikhil.ToDo.Adapter.RecyclerAdapter
-import com.example.nikhil.ToDo.Pojo.Item
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.bumptech.glide.request.RequestOptions
+import test.example.nikhil.ToDo.Adapter.RecyclerAdapter
+import test.example.nikhil.ToDo.Pojo.Item
 import com.example.nikhil.ToDo.R
-import com.example.nikhil.ToDo.Database.MyDBHelper
-import com.example.nikhil.ToDo.Util.MyUtil
+import kotlinx.android.synthetic.main.about_developer.view.*
+import test.example.nikhil.ToDo.Database.MyDBHelper
+import test.example.nikhil.ToDo.Util.MyUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.Exception
 
 
 class MainActivity : AppCompatActivity(),android.support.v7.widget.SearchView.OnQueryTextListener {
 
-    private val db=MyDBHelper(this)
+    private val db= MyDBHelper(this)
     private var list: ArrayList<Item> = ArrayList()
     private lateinit var myRecyclerAdapter: RecyclerAdapter
     private lateinit var myIntent:Intent
@@ -73,7 +77,6 @@ class MainActivity : AppCompatActivity(),android.support.v7.widget.SearchView.On
     override fun onQueryTextSubmit(query: String?): Boolean {
         return false
     }
-
 
 
     private fun handleSharedIntent(sharedIntent: Intent) {
@@ -163,7 +166,12 @@ class MainActivity : AppCompatActivity(),android.support.v7.widget.SearchView.On
         val btnLinkedIn =v.findViewById<ImageButton>(R.id.btnLinkedIn)
         val btnFb=v.findViewById<ImageButton>(R.id.btnFb)
         val btnGit=v.findViewById<ImageButton>(R.id.btnGit)
+        val imgProfile=v.ImgProfile
 
+        Glide.with(this)
+                .load(R.drawable.myphoto)
+                .circleCrop()
+                .into(imgProfile)
 
         // Connecting to social Links of the developer
         btnMail.setOnClickListener{
@@ -264,7 +272,7 @@ class MainActivity : AppCompatActivity(),android.support.v7.widget.SearchView.On
         if (list.count() == 0) {
             Snackbar.make(mainLayout, "No Items available. Do Insert", Snackbar.LENGTH_SHORT).show()
         }
-        myRecyclerAdapter=RecyclerAdapter(list)
+        myRecyclerAdapter= RecyclerAdapter(list)
         myRecyclerView.adapter = myRecyclerAdapter
     }
 }

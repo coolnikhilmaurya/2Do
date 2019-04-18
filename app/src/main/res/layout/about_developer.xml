@@ -9,14 +9,15 @@
     android:layout_height="150dp">
 
         <ImageView
-            android:id="@+id/profile"
+            android:id="@+id/ImgProfile"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:contentDescription="@string/ran"
             android:elevation="25dp"
-            android:padding="20dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/myphoto" />
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/ring"
+            />
 
         <LinearLayout
             android:id="@+id/aboutLinearLayout"
@@ -25,9 +26,9 @@
             android:layout_marginStart="8dp"
             android:orientation="vertical"
             android:layout_marginTop="25dp"
-            app:layout_constraintBottom_toBottomOf="@+id/profile"
-            app:layout_constraintStart_toEndOf="@+id/profile"
-            app:layout_constraintTop_toTopOf="@+id/profile">
+            app:layout_constraintBottom_toBottomOf="@+id/ImgProfile"
+            app:layout_constraintStart_toEndOf="@+id/ImgProfile"
+            app:layout_constraintTop_toTopOf="@+id/ImgProfile">
 
             <TextView
                 android:id="@+id/tvDeveloperName"

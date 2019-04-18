@@ -1,10 +1,10 @@
-package com.example.nikhil.ToDo.Database
+package test.example.nikhil.ToDo.Database
 
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import com.example.nikhil.ToDo.Pojo.Item
+import test.example.nikhil.ToDo.Pojo.Item
 
         // DB info
         const val DB_NAME = "db_2do"

@@ -1,4 +1,4 @@
-package com.example.nikhil.ToDo
+package test.example.nikhil.ToDo
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

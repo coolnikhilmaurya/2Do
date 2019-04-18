@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
-            android:name=".Activities.MainActivity"
+            android:name="test.example.nikhil.ToDo.Activities.MainActivity"
             android:label="@string/app_name"
             tools:ignore="InnerclassSeparator">
             <intent-filter>
