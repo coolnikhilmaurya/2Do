@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="test.example.nikhil.ToDo.Activities.TestActivity">
+
+    <EditText
+        android:id="@+id/in_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:enabled="false"
+       />
+
+    <Button
+        android:id="@+id/btn_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/in_date"
+        android:layout_toEndOf="@+id/in_date"
+        android:layout_toRightOf="@+id/in_date"
+        android:text="SELECT DATE" />
+
+    <EditText
+        android:id="@+id/in_time"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/in_date"
+        android:layout_alignParentStart="true"
+        android:enabled="false"
+        android:layout_alignParentLeft="true" />
+
+    <Button
+        android:id="@+id/btn_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_date"
+        android:layout_alignStart="@+id/btn_date"
+        android:layout_alignLeft="@+id/btn_date"
+        android:text="SELECT TIME" />
+
+</RelativeLayout>

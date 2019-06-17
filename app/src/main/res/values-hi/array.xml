@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="list_context_options">
+        <item>बदले</item>
+        <item>कापी करे</item>
+        <item>सेयर करे</item>
+        <item>मिटाए</item>
+    </array>
+    <array name="list_priorities">
+        <item>उच्‍च</item>
+        <item>मध्यम</item>
+        <item>निम्‍न</item>
+    </array>
+</resources>
