@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.support.design.widget.BottomSheetDialog
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -41,7 +42,7 @@ class MainActivity : AppCompatActivity(),android.support.v7.widget.SearchView.On
 
         try {
             // creating locale
-            val loc = "hi"
+            val loc = "en"
             val locale2 = Locale(loc)
             Locale.setDefault(locale2)
             val config2 = Configuration()
@@ -60,6 +61,8 @@ class MainActivity : AppCompatActivity(),android.support.v7.widget.SearchView.On
             fabInsert.setOnClickListener {
                 myInsertFabOnClickListener()
             }
+
+
         } catch (ex: Exception) {
             // logging exception and notifying user
             Log.d(MyUtil.getTag(), ex.message)
@@ -288,6 +291,17 @@ class MainActivity : AppCompatActivity(),android.support.v7.widget.SearchView.On
             Snackbar.make(mainLayout, getString(R.string.no_items_avl_do_insrt), Snackbar.LENGTH_SHORT).show()
         }
         myRecyclerAdapter= RecyclerAdapter(list)
+
+        myRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (dy > 0 && fabInsert.getVisibility() == View.VISIBLE) {
+                    fabInsert.hide();
+                } else if (dy < 0 && fabInsert.getVisibility() !=View.VISIBLE) {
+                    fabInsert.show();
+                }
+            }
+        })
         myRecyclerView.adapter = myRecyclerAdapter
     }
 }
