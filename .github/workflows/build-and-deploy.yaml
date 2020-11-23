@@ -9,7 +9,26 @@ jobs:
 steps:
                 - name: Fetch master branch
                   uses: actions/checkout@v2
+
                 - name: Grant gradle rights
                   run: chmod +x ./gradlew
+
                 - name: Build Release APK with Gradle
                   run: ./gradlew clean bundleRelease
+
+                - name: Build release
+                  uses: r0adkll/sign-android-release@v1
+                  with:
+                      releaseDirectory: app/build/outputs/bundle/release 
+                      signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+                      alias: ${{ secrets.ALIAS }}
+                      keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}       
+                      keyPassword: ${{ secrets.KEY_PASSWORD }}
+
+                - name: Upload Android Release to Play Store
+                  uses: r0adkll/upload-google-play@v1
+                  with:
+                      serviceAccountJsonPlainText: ${{secrets.SERVICE_ACCOUNT_JSON}}
+                      packageName: com.test.nikhil.a2Do
+                      releaseFile: app/build/outputs/bundle/release/app-release.aab
+                      track: beta
