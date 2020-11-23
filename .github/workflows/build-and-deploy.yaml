@@ -6,7 +6,7 @@ on:
 jobs:
         build:
                 runs-on: ubuntu-latest
-steps:
+                steps:
                 - name: Fetch master branch
                   uses: actions/checkout@v2
 
