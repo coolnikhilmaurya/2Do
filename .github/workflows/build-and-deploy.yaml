@@ -10,7 +10,7 @@ jobs:
                 - name: Fetch master branch
                   uses: actions/checkout@v2
 
-                - name: Grant gradle rights
+                - name: Grant gardle rights
                   run: chmod +x ./gradlew
 
                 - name: Build Release APK with Gradle
